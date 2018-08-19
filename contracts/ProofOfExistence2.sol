@@ -7,7 +7,7 @@ contract ProofOfExistence2 {
 
     // Store a proof of existence in the contract state
     // *transactional function*
-    function storeProof (bytes proof) public {
+    function storeProof (bytes32 proof) public {
         proofs.push(proof);
     }
 
@@ -20,21 +20,21 @@ contract ProofOfExistence2 {
 
     // Helper function to get a document's sha256
     // *read-only function*
-    function proofFor(string document) view returns (bytes32) {
+    function proofFor(string document) public view returns (bytes32) {
         return sha256(document);
     }
 
     // Check if a document has been notarized
     // *read-only function*
-    function checkDocument(string document) view returns (bool) {
+    function checkDocument(string document) public view returns (bool) {
         bytes32 proof = proofFor(document);
         return hasProof(proof);
     }
 
     // Returns true if proof is stored
     // *read-only function*
-    function hasProof(bytes32 proof) view returns (bool) {
-        for (uint256 i =0; i < proofs.length; i++) {
+    function hasProof(bytes32 proof) public view returns (bool) {
+        for (uint256 i = 0; i < proofs.length; i++) {
             if (proofs[i] == proof) {
                 return true;
             }
