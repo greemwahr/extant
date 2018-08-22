@@ -9,7 +9,7 @@ contract ProofOfExistence3 {
     }
 
     // Calculate and store the proof for a document
-    function notarize (string document) private {
+    function notarize (string document) public {
         bytes32 proof = proofFor(document);
         storeProof(proof);
     }
@@ -20,7 +20,7 @@ contract ProofOfExistence3 {
     } 
 
     // Check if a document has been notarised
-    function checkDocument (string document) private view returns (bool) {
+    function checkDocument (string document) public view returns (bool) {
         bytes32 proof = proofFor(document);
         return hasProof(proof);
     }
