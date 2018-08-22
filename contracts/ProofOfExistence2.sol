@@ -20,7 +20,7 @@ contract ProofOfExistence2 {
 
     // Helper function to get a document's sha256
     // *read-only function*
-    function proofFor(string document) public view returns (bytes32) {
+    function proofFor(string document) public pure returns (bytes32) {
         return sha256(document);
     }
 
